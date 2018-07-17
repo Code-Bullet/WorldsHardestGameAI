@@ -46,6 +46,7 @@ class Player{
           this.brain.step++;
         } else {//if at the end of the directions array then the player is dead
           this.dead = true;
+          this.fading = true;
         }
         this.moveCount =6;
       } else {
