@@ -82,7 +82,7 @@ function draw(){
    }
  } else
    if (replayGens) {//if replaying the best generations
-     if ((genPlayer.dead && genPlayer.fandeCounter <=0) || genPlayer.reachedGoal) { //if the current gen is done
+     if ((genPlayer.dead && genPlayer.fadeCounter <=0) || genPlayer.reachedGoal) { //if the current gen is done
        upToGenPos ++;//next gen
        if (testPopulation.genPlayers.length <= upToGenPos) {//if reached the final gen
          //stop replaying gens
