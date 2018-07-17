@@ -33,8 +33,41 @@ var winCounter = -1;
 
 var img;
 var flip = true;
+
+//population size vars
+var  populationSize = 500;
+var popPara;
+var popPlus;
+var popMinus;
+
+//mutation rate vars
+var mutationRate = 0.01;
+var mrPara;
+var mrPlus;
+var mrMinus;
+
+//evolution speed vars
+var evolutionSpeed =1;
+var speedPara;
+var speedPlus;
+var speedMinus;
+
+//increaseMoves
+var movesH3;
+
+var increaseMovesBy =5;
+var movesPara;
+var movesPlus;
+var movesMinus;
+
+var increaseEvery =5;
+var everyPara;
+var everyPlus;
+var everyMinus;
+
 function setup() {
   var canvas = createCanvas(1280,720);
+  htmlStuff();
   for (var i = 0; i< 22; i++) {
     tiles[i] = [];
     for (var j = 0; j< 10; j++) {
@@ -51,9 +84,8 @@ function setup() {
    p = new Player();
    setDots();
    winArea = new Solid(tiles[17][2], tiles[19][7]);
-   testPopulation = new Population(500);
+   testPopulation = new Population(populationSize);
    img = loadImage("assets/DAB.png");
-
 }
 
 function draw(){
@@ -75,6 +107,8 @@ function draw(){
 
    } else {
      //update the dots and the players and show them to the screen
+
+
      moveAndShowDots();
 
      p.update();
@@ -114,14 +148,25 @@ function draw(){
       resetDots();
 
        //every 5 generations incease the number of moves by 5
-       if (testPopulation.gen % 5 ==0) {
+       if (testPopulation.gen % increaseEvery ==0) {
          testPopulation.increaseMoves();
        }
 
      } else {
-       moveAndShowDots();
+
+       // moveAndShowDots();
        //update and show population
-       testPopulation.update();
+
+       for(var j = 0 ; j< evolutionSpeed; j++){
+         for (var i = 0; i < dots.length; i ++) {
+           dots[i].move();
+         }
+         testPopulation.update();
+       }
+
+       for (var i = 0; i < dots.length; i ++) {
+         dots[i].show();
+       }
        testPopulation.show();
      }
 
@@ -225,6 +270,20 @@ function keyPressed(){
       left = true;
       break;
     }
+    switch(key){
+      case 'W':
+        up = true;
+        break;
+      case 'S':
+        down = true;
+        break;
+      case 'D':
+        right = true;
+        break;
+      case 'A':
+        left = true;
+        break;
+    }
     setPlayerVelocity();
   }else{//if human is not playing
     switch(key) {
@@ -285,6 +344,20 @@ function keyReleased(){
       left = false;
       break;
     }
+    switch(key){
+      case 'W':
+        up = false;
+        break;
+      case 'S':
+        down = false;
+        break;
+      case 'D':
+        right = false;
+        break;
+      case 'A':
+        left = false;
+        break;
+    }
 
     setPlayerVelocity();
   }
@@ -308,4 +381,112 @@ function setPlayerVelocity(){
     p.vel.x +=1;
   }
 
+}
+//---------------------------------------------------------------------------------------------------------------------
+function htmlStuff(){
+  createElement("h2", "Change Values")
+  createP("here are some values you can play with, sure it's not sexy but it does the job")
+  popPara =  createDiv("Population Size: " + populationSize);
+  popMinus = createButton("-");
+  popPlus = createButton('+');
+
+  popPlus.mousePressed(plusPopSize);
+  popMinus.mousePressed(minusPopSize);
+
+  mrPara =  createDiv("Mutation Rate: " + mutationRate);
+  mrMinus = createButton("1/2");
+  mrPlus = createButton('x2');
+  mrPlus.mousePressed(plusmr);
+  mrMinus.mousePressed(minusmr);
+
+  speedPara =  createDiv("Evolution Player Speed: " + evolutionSpeed);
+  speedMinus = createButton("-");
+  speedPlus = createButton('+');
+  speedPlus.mousePressed(plusSpeed);
+  speedMinus.mousePressed(minusSpeed);
+
+  movesH3 = createElement("h4", "Increase number of player moves by " + increaseMovesBy + " every " + increaseEvery + " generations");
+  movesPara = createDiv("Increase moves by: " + increaseMovesBy);
+  movesMinus = createButton("-");
+  movesPlus = createButton('+');
+  movesPlus.mousePressed(plusMoves);
+  movesMinus.mousePressed(minusMoves);
+  everyPara = createDiv("Increase every " + increaseEvery + " generations");
+  everyMinus = createButton("-");
+  everyPlus = createButton('+');
+  everyPlus.mousePressed(plusEvery);
+  everyMinus.mousePressed(minusEvery);
+}
+
+function minusPopSize(){
+  if(populationSize > 100){
+    populationSize -=100;
+    popPara.html("Population Size: " + populationSize);
+  }
+}
+function plusPopSize(){
+  if(populationSize < 10000){
+    populationSize +=100;
+    popPara.html("Population Size: " + populationSize);
+
+  }
+}
+
+function minusmr(){
+  if(mutationRate > 0.0001){
+    mutationRate /= 2.0;
+    mrPara.html("Mutation Rate: " + mutationRate);
+  }
+}
+function plusmr(){
+  if(mutationRate <= 0.5){
+    mutationRate *= 2.0;
+    mrPara.html("Mutation Rate: " + mutationRate);
+
+  }
+}
+
+function minusSpeed(){
+  if(evolutionSpeed > 1){
+    evolutionSpeed -= 1;
+    speedPara.html("Evolution Player Speed: " + evolutionSpeed);
+  }
+}
+function plusSpeed(){
+  if(evolutionSpeed <= 5){
+    evolutionSpeed += 1;
+    speedPara.html("Evolution Player Speed: " + evolutionSpeed);
+
+  }
+}
+
+
+function minusMoves(){
+  if(increaseMovesBy >= 1){
+    increaseMovesBy -= 1;
+    movesPara.html("Increase moves by: " + increaseMovesBy);
+    movesH3.html("Increase number of player moves by " + increaseMovesBy + " every " + increaseEvery + " generations");
+  }
+}
+function plusMoves(){
+  if(increaseMovesBy <= 500){
+    increaseMovesBy += 1;
+    movesPara.html("Increase moves by: " + increaseMovesBy);
+    movesH3.html("Increase number of player moves by " + increaseMovesBy + " every " + increaseEvery + " generations");
+  }
+}
+
+function minusEvery(){
+  if(increaseEvery > 1){
+    increaseEvery -= 1;
+    everyPara.html("Increase every " + increaseEvery + " generations");
+    movesH3.html("Increase number of player moves by " + increaseMovesBy + " every " + increaseEvery + " generations");
+  }
+}
+function plusEvery(){
+  if(increaseEvery <= 100){
+    increaseEvery += 1;
+    everyPara.html("Increase every " + increaseEvery + " generations");
+    movesH3.html("Increase number of player moves by " + increaseMovesBy + " every " + increaseEvery + " generations");
+  }
 }

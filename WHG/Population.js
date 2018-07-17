@@ -73,7 +73,7 @@ class Population {
     //the champion lives on
     newPlayers[0] = this.players[this.bestPlayer].gimmeBaby();
     newPlayers[0].isBest = true;
-    for (var i = 1; i< this.players.length; i++) {
+    for (var i = 1; i< populationSize; i++) {
       //select parent based on fitness
       var parent = this.selectParent();
 
@@ -82,8 +82,8 @@ class Population {
     }
 
     // this.players = newPlayers.slice();
-
-    for(var i = 0 ; i< this.players.length;i++){
+    this.players = [];
+    for(var i = 0 ; i< newPlayers.length;i++){
       this.players[i] = newPlayers[i];
     }
     this.gen ++;

@@ -55,7 +55,7 @@ class Brain {
 
   //mutates the brain by setting some of the directions to random vectors
   mutate(died, deathStep) {
-    var mutationRate = 0.01;//chance that any vector in directions gets changed
+    //chance that any vector in directions gets changed
     for (var i =0; i< this.directions.length; i++) {
       var rand = random(1);
       if (died && i > deathStep - 10) {
@@ -72,7 +72,7 @@ class Brain {
   //---------------------------------------------------------------------------------------------------------------------------------------------------------
   //increases the number of elements in directions by 5
  increaseMoves() {
-   for(var i = 0 ; i<5;i++){
+   for(var i = 0 ; i< increaseMovesBy ;i++){
      this.directions.push(this.getRandomDirection());
    }
   }
