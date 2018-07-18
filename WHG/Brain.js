@@ -44,7 +44,7 @@ class Brain {
   //-------------------------------------------------------------------------------------------------------------------------------------
   //returns a perfect copy of this brain object
   clone() {
-    var clone = new Brain(this.directions.length);
+    var clone = new Brain(0); // create zero-sized brain as it will be rewritten
     for (var i = 0; i < this.directions.length; i++) {
       clone.directions[i] = this.directions[i].copy();
     }

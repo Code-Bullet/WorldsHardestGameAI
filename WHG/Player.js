@@ -56,46 +56,46 @@ class Player{
     var temp = createVector(this.vel.x, this.vel.y);
     temp.normalize();
     temp.mult(this.playerSpeed);
-    for (var i = 0; i< solids.length; i++) {
-      temp = solids[i].restrictMovement(this.pos, createVector(this.pos.x+this.size, this.pos.y+this.size), temp);
+    var sized = createVector(this.pos.x + this.size, this.pos.y + this.size);
+    for (var i = 0; i < solids.length; i++) {
+      temp = solids[i].restrictMovement(this.pos, sized, temp);
     }
     this.pos.add(temp);
-
   }
 
   //checks if the player
 checkCollisions() {
-  for (var i = 0; i< dots.length; i++) {
-    if (dots[i].collides(this.pos, createVector(this.pos.x+this.size, this.pos.y+this.size))) {
+  var sized = createVector(this.pos.x + this.size, this.pos.y + this.size)
+  for (var i = 0; i < dots.length; i++) {
+    if (dots[i].collides(this.pos, sized)) {
       this.fading = true;
       this.dead = true;
       this.deathByDot = true;
       this.deathAtStep = this.brain.step;
     }
   }
-  if (winArea.collision(this.pos, createVector(this.pos.x+this.size, this.pos.y+this.size))) {
+  if (winArea.collision(this.pos, sized)) {
     this.reachedGoal = true;
   }
-  for (var i = 0; i< this.nodes.length; i++) {
-    this.nodes[i].collision(this.pos, createVector(this.pos.x+this.size, this.pos.y+this.size));
+  for (var i = 0; i < this.nodes.length; i++) {
+    this.nodes[i].collision(this.pos, sized);
   }
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
- update() {
-  if (!this.dead && !this.reachedGoal) {
-    this.move();
-    this.checkCollisions();
-  } else if (this.fading) {
-    if (this.fadeCounter > 0) {
-      if(humanPlaying || replayGens){
-      this.fadeCounter -=10;
-    }else{
-      this.fadeCounter = 0;
-
-    }
+  update() {
+    if (!this.dead && !this.reachedGoal) {
+      this.move();
+      this.checkCollisions();
+    } else if (this.fading) {
+      if (this.fadeCounter > 0) {
+        if (humanPlaying || replayGens) {
+          this.fadeCounter -= 10;
+        } else {
+          this.fadeCounter = 0;
+        }
+      }
     }
   }
-}
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
  calculateFitness() {
