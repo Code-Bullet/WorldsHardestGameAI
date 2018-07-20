@@ -511,33 +511,33 @@ function plusEvery(){
 
 //--------------------------------------------------------------------------------------------------------------------------------
 //this just prints the coordinates of the tile which is clicked, usefull for level building
-function mousePressed() {
+// function mousePressed() {
 
-  var x = floor((mouseX - xoff )/tileSize);
-  var y = floor((mouseY - yoff )/tileSize);
+//   var x = floor((mouseX - xoff )/tileSize);
+//   var y = floor((mouseY - yoff )/tileSize);
 
-  tiles[x][y].wall = !tiles[x][y].wall;
-  // tiles[x][y].safe = !tiles[x][y].safe;
-  // tiles[x][y].safe = !tiles[x][y].safe;
+//   tiles[x][y].wall = !tiles[x][y].wall;
+//   // tiles[x][y].safe = !tiles[x][y].safe;
+//   // tiles[x][y].safe = !tiles[x][y].safe;
 
-  //define solids
-  // if(firstClick){
-  //   print("solids.push(new Solid(tiles[" + x + "]["+ y + "],");
-  // }else{
-  //   print("tiles[" + x + "]["+ y + "]));");
-  // }
-  // firstClick = !firstClick;
+//   //define solids
+//   // if(firstClick){
+//   //   print("solids.push(new Solid(tiles[" + x + "]["+ y + "],");
+//   // }else{
+//   //   print("tiles[" + x + "]["+ y + "]));");
+//   // }
+//   // firstClick = !firstClick;
 
-  print("tiles[" + x + "]["+ y + "],");
+//   print("tiles[" + x + "]["+ y + "],");
 
-  // define dots
-  // if(firstClick){
-  //   print("dots.push(new Dot(tiles[" + x + "]["+ y + "],");
-  // }else{
-  //   print("tiles[" + x + "]["+ y + "], 0, 1));");
-  // }
-  //
-  // firstClick = !firstClick;
-  // dots.push(new Dot(tiles[15][6], tiles[6][6], -1));
+//   // define dots
+//   // if(firstClick){
+//   //   print("dots.push(new Dot(tiles[" + x + "]["+ y + "],");
+//   // }else{
+//   //   print("tiles[" + x + "]["+ y + "], 0, 1));");
+//   // }
+//   //
+//   // firstClick = !firstClick;
+//   // dots.push(new Dot(tiles[15][6], tiles[6][6], -1));
 
-}
+// }
