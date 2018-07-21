@@ -89,6 +89,13 @@ function setup() {
    winArea = new Solid(tiles[10][4], tiles[11][5]);
    testPopulation = new Population(populationSize);
    img = loadImage("assets/DAB.png");
+    //prevents the window from moving from the arrow keys or the spacebar
+    window.addEventListener("keydown", function(e) {
+      // space and arrow keys
+      if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+          e.preventDefault();
+      }
+  }, false);
 }
 
 function draw(){
