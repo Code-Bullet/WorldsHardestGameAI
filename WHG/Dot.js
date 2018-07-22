@@ -48,12 +48,15 @@ class Dot {
   //returns true of the Pvectors define a square which collides with this dot
   collides(ptl, pbr) {//player dimensions
 
-    var topLeft = createVector(this.position.x - this.diameter/2, this.position.y-this.diameter/2);
-    var bottomRight = createVector(this.position.x + this.diameter/2, this.position.y + this.diameter/2);
-    var playerSize = bottomRight.x - topLeft.x;
-    if ((ptl.x <bottomRight.x && pbr.x > topLeft.x) &&( ptl.y < bottomRight.y && pbr.y > topLeft.y)) {
+    var topLeftX = this.position.x - this.diameter/2;
+    var topLeftY = this.position.y - this.diameter/2;
+    var bottomRightX = this.position.x + this.diameter/2;
+    var bottomRightY = this.position.y + this.diameter/2;
+	
+    var playerSize = bottomRightX - topLeftX;
+    if ((ptl.x < bottomRightX && pbr.x > topLeftX) && (ptl.y < bottomRightY && pbr.y > topLeftY)) {
 
-      if (dist(this.position.x, this.position.y, (ptl.x + pbr.x) /2.0, (ptl.y + pbr.y) /2.0)< this.diameter/2 + sqrt(playerSize*playerSize *2)/2) {
+      if (dist(this.position.x, this.position.y, (ptl.x + pbr.x) /2.0, (ptl.y + pbr.y) /2.0) < this.diameter/2 + sqrt(playerSize*playerSize *2)/2) {
         return true;
       }
     }

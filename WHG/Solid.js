@@ -9,8 +9,7 @@ class Solid {
 
   }
 
-
-    restrictMovement(tl, br, movement) {//player dimensions
+  restrictMovement(tl, br, movement) {//player dimensions
     //add the x first
 
     var x = movement.x;
@@ -18,19 +17,14 @@ class Solid {
     //
     // movement.x = round(movement.x);
     // movement.y = round(movement.y);
-    var ptl = createVector(tl.x+movement.x, tl.y);
-    var pbr = createVector(br.x+movement.x, br.y);
-
-    if ((ptl.x <this.bottomRight.x && pbr.x > this.pos.x) &&( ptl.y < this.bottomRight.y && pbr.y > this.pos.y)) {
-
-      x=0;
+	
+    if ((tl.x + x < this.bottomRight.x && br.x + x > this.pos.x) && (tl.y < this.bottomRight.y && br.y > this.pos.y)) {
+      x = 0;
     }
 
     //check the y movement
-    ptl = createVector(tl.x, tl.y +movement.y);
-    pbr = createVector(br.x, br.y + movement.y);
-    if ((ptl.x <this.bottomRight.x && pbr.x > this.pos.x) &&( ptl.y < this.bottomRight.y && pbr.y > this.pos.y)) {
-      y=0;
+    if ((tl.x < this.bottomRight.x && br.x > this.pos.x) && (tl.y + y < this.bottomRight.y && br.y + y > this.pos.y)) {
+      y = 0;
     }
 
     return createVector(x, y);
