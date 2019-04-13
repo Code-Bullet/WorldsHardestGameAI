@@ -1,0 +1,31 @@
+/*
+ * Copyright © 2018 CodeBullet
+ */
+
+body {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+p {
+    font-size: 18px;
+}
+
+h2 {
+    margin-top: 20px;
+    padding-top: 20px;
+
+    border-top-width: 4px;
+    border-top-style: solid;
+    border-top-color: silver;
+
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-decoration-style: solid;
+}
+
+/* Affects the "Increase number of player moves by X every Y generations" text. */
+h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
