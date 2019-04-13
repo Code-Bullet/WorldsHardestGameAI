@@ -396,8 +396,8 @@ function setPlayerVelocity(){
 }
 //---------------------------------------------------------------------------------------------------------------------
 function htmlStuff(){
-  createElement("h2", "Change Values")
-  createP("here are some values you can play with, sure it's not sexy but it does the job")
+  createElement("h2", "Change Values");
+  createP("here are some values you can play with, sure it's not sexy but it does the job");
   popPara =  createDiv("Population Size: " + populationSize);
   popMinus = createButton("-");
   popPlus = createButton('+');
