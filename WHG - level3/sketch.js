@@ -1,79 +1,83 @@
-var tileSize = 50;
-var xoff = 80;
-var yoff = 100;
+/*
+ * Copyright © 2018 CodeBullet
+ */
+
+let tileSize = 50;
+let xoff = 80;
+let yoff = 100;
 
 //human playing vars
-var humanPlaying = false;
-var left = false;
-var right = false;
-var up = false;
-var down = false;
-var p;
+let humanPlaying = false;
+let left = false;
+let right = false;
+let up = false;
+let down = false;
+let p;
 
 //arrays
-var tiles = [];
-var solids = [];
-var dots = [];
-var savedDots = [];
+let tiles = [];
+let solids = [];
+let dots = [];
+let savedDots = [];
 
-var showBest = false;
+let showBest = false;
 
-var winArea;//a solid which is the win zone i.e. the green bits
+let winArea;//a solid which is the win zone i.e. the green bits
 
 //gen replay vars
-var replayGens = false;
-var genPlayer;
-var upToGenPos = 0;
+let replayGens = false;
+let genPlayer;
+let upToGenPos = 0;
 
 //population vars
-var numberOfSteps = 10;
-var testPopulation;
+let numberOfSteps = 10;
+let testPopulation;
 
-var winCounter = -1;
+let winCounter = -1;
 
-var img;
-var flip = true;
+let img;
+let flip = true;
 
 //population size vars
-var  populationSize = 500;
-var popPara;
-var popPlus;
-var popMinus;
+let populationSize = 500;
+let popPara;
+let popPlus;
+let popMinus;
 
 //mutation rate vars
-var mutationRate = 0.01;
-var mrPara;
-var mrPlus;
-var mrMinus;
+let mutationRate = 0.01;
+let mrPara;
+let mrPlus;
+let mrMinus;
 
 //evolution speed vars
-var evolutionSpeed =1;
-var speedPara;
-var speedPlus;
-var speedMinus;
+let evolutionSpeed = 1;
+let speedPara;
+let speedPlus;
+let speedMinus;
 
 //increaseMoves
-var movesH3;
+let movesH3;
 
-var increaseMovesBy =5;
-var movesPara;
-var movesPlus;
-var movesMinus;
+let increaseMovesBy = 5;
+let movesPara;
+let movesPlus;
+let movesMinus;
 
-var increaseEvery =5;
-var everyPara;
-var everyPlus;
-var everyMinus;
+let increaseEvery = 5;
+let everyPara;
+let everyPlus;
+let everyMinus;
 
-var firstClick = true;
-var showedCoin = false;
+let firstClick = true;
+let showedCoin = false;
 
 function setup() {
-  var canvas = createCanvas(1280,720);
+  let canvas = createCanvas(1280,720);
   htmlStuff();
-  for (var i = 0; i< 22; i++) {
+  for (let i = 0; i< 22; i++) {
     tiles[i] = [];
-    for (var j = 0; j< 10; j++) {
+    for (let j = 0; j< 10; j++) {
       tiles[i][j] = new Tile(i, j);
     }
   }
@@ -169,14 +173,14 @@ function draw(){
        // moveAndShowDots();
        //update and show population
 
-       for(var j = 0 ; j< evolutionSpeed; j++){
-         for (var i = 0; i < dots.length; i ++) {
+       for(let j = 0 ; j< evolutionSpeed; j++){
+         for (let i = 0; i < dots.length; i ++) {
            dots[i].move();
          }
          testPopulation.update();
        }
 
-       for (var i = 0; i < dots.length; i ++) {
+       for (let i = 0; i < dots.length; i ++) {
          dots[i].show();
        }
        testPopulation.show();
@@ -184,39 +188,39 @@ function draw(){
 
 }
 function moveAndShowDots(){
-  for (var i = 0; i < dots.length; i ++) {
+  for (let i = 0; i < dots.length; i ++) {
     dots[i].move();
     dots[i].show();
   }
 
 }
 function resetDots(){
-  for (var i = 0; i < dots.length; i ++) {
+  for (let i = 0; i < dots.length; i ++) {
     dots[i].resetDot();
   }
 
 }
 function drawTiles(){
-  for (var i = 0; i< tiles.length; i++) {
-    for (var j = 0; j< tiles[0].length; j++) {
+  for (let i = 0; i< tiles.length; i++) {
+    for (let j = 0; j< tiles[0].length; j++) {
       tiles[i][j].show();
     }
   }
-  for (var i = 0; i< tiles.length; i++) {
-    for (var j = 0; j< tiles[0].length; j++) {
+  for (let i = 0; i< tiles.length; i++) {
+    for (let j = 0; j< tiles[0].length; j++) {
       tiles[i][j].showEdges();
     }
   }
 }
 
 function loadDots(){
-  for (var i = 0; i< dots.length; i++) {
+  for (let i = 0; i< dots.length; i++) {
     dots[i] = savedDots[i].clone();
   }
 }
 
 function saveDots(){
-  for (var i = 0; i< dots.length; i++) {
+  for (let i = 0; i< dots.length; i++) {
     savedDots[i] = dots[i].clone();
   }
 }
@@ -301,8 +305,8 @@ function keyPressed(){
     switch(key) {
     case ' ':
       showBest = !showBest;
-      for (var i = 0; i< tiles.length; i++) {
-        for (var j = 0; j< tiles[0].length; j++) {
+      for (let i = 0; i< tiles.length; i++) {
+        for (let j = 0; j< tiles[0].length; j++) {
           // if(tiles[i][j].wall){
           //   print("tiles["+ i+ "][" + j +"].wall = true;")//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,
           // }
@@ -520,8 +524,8 @@ function plusEvery(){
 //this just prints the coordinates of the tile which is clicked, usefull for level building
 function mousePressed() {
 
-  var x = floor((mouseX - xoff )/tileSize);
-  var y = floor((mouseY - yoff )/tileSize);
+  let x = floor((mouseX - xoff )/tileSize);
+  let y = floor((mouseY - yoff )/tileSize);
 
   // tiles[x][y].wall = !tiles[x][y].wall;
   // tiles[x][y].goal = !tiles[x][y].goal;
