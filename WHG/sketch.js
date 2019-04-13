@@ -90,8 +90,8 @@ function setup() {
    winArea = new Solid(tiles[17][2], tiles[19][7]);
    testPopulation = new Population(populationSize);
    img = loadImage("assets/DAB.png");
-  
-  //prevents the window from moving from the arrow keys or the spacebar
+
+    //prevents the window from moving from the arrow keys or the space bar
     window.addEventListener("keydown", function(e) {
       // space and arrow keys
       if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
@@ -150,7 +150,7 @@ function draw(){
        genPlayer.update();
        genPlayer.show();
      }
-   } else//if training normaly
+   } else//if training normally
      if (testPopulation.allPlayersDead()) {
        //genetic algorithm
        testPopulation.calculateFitness();
@@ -159,7 +159,7 @@ function draw(){
        //reset dots
       resetDots();
 
-       //every 5 generations incease the number of moves by 5
+       //every 5 generations increase the number of moves by 5
        if (testPopulation.gen % increaseEvery ==0) {
          testPopulation.increaseMoves();
        }

@@ -45,7 +45,7 @@ class Player{
   move(){
     if (!humanPlaying){
       if (this.moveCount == 0) {//move in the direction for 6 frames
-        if (this.brain.directions.length > this.brain.step) {//if there are still directions left then set the velocity as the next PVector in the direcitons array
+        if (this.brain.directions.length > this.brain.step) {//if there are still directions left then set the velocity as the next PVector in the direction array
           this.vel = this.brain.directions[this.brain.step];
           this.brain.step++;
         } else {//if at the end of the directions array then the player is dead
