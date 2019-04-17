@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2018 CodeBullet
+ */
+
 class Player{
   constructor(){
     this.pos = createVector(3*tileSize + xoff,4* tileSize + yoff);
@@ -41,7 +45,7 @@ class Player{
   move(){
     if (!humanPlaying){
       if (this.moveCount == 0) {//move in the direction for 6 frames
-        if (this.brain.directions.length > this.brain.step) {//if there are still directions left then set the velocity as the next PVector in the direcitons array
+        if (this.brain.directions.length > this.brain.step) {//if there are still directions left then set the velocity as the next PVector in the direction array
           this.vel = this.brain.directions[this.brain.step];
           this.brain.step++;
         } else {//if at the end of the directions array then the player is dead
@@ -65,7 +69,7 @@ class Player{
 
   //checks if the player
 checkCollisions() {
-  for (var i = 0; i< dots.length; i++) {
+  for (let i = 0; i< dots.length; i++) {
     if (dots[i].collides(this.pos, createVector(this.pos.x+this.size, this.pos.y+this.size))) {
       this.fading = true;
       this.dead = true;
@@ -76,7 +80,7 @@ checkCollisions() {
   if (winArea.collision(this.pos, createVector(this.pos.x+this.size, this.pos.y+this.size))) {
     this.reachedGoal = true;
   }
-  for (var i = 0; i< this.nodes.length; i++) {
+  for (let i = 0; i< this.nodes.length; i++) {
     this.nodes[i].collision(this.pos, createVector(this.pos.x+this.size, this.pos.y+this.size));
   }
 }
